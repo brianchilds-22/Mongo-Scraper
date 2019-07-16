@@ -4,7 +4,10 @@ var mongoose = require("mongoose");
 var PORT = process.env.PORT || 3000;
 var app = express();
 var router = express.Router();
+require("../config/routes.js")(router);
 app.use(express.static(__dirname + "/public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.engine("handlebars", expressHandlebars({
     defaultLayout: "main"
 }));
