@@ -1,3 +1,3 @@
 # Mongo-Scraper
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Mongo](https://images-na.ssl-images-amazon.com/images/I/31c9Fyinq0L.jpg)
