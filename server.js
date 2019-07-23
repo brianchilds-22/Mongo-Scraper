@@ -3,17 +3,30 @@ var expressHandlebars = require("express-handlebars");
 var mongoose = require("mongoose");
 var PORT = process.env.PORT || 3000;
 var app = express();
+
 var router = express.Router();
-require("../config/routes.js")(router);
+require("./config/routes")(router);
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.engine("handlebars", expressHandlebars({
     defaultLayout: "main"
 }));
+
 app.set("view engine", "handlebars");
+
 app.use(router);
+
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 mongoose.connect(db, function(error) {
     if (error) {
         console.log(error);
@@ -22,6 +35,7 @@ mongoose.connect(db, function(error) {
         console.log("mongoose is connected");
     }
 });
+
 app.listen(PORT, function() {
     console.log("Listening on port:" + PORT);
 });

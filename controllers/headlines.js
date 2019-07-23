@@ -1,6 +1,7 @@
-var scrape = required("scripts\scrape.js");
-var makeDate = required("scripts\dates.js");
-var Headline = require("models\Headline");
+var scrape = require("../scripts/scrape");
+var makeDate = require("../scripts/dates");
+
+var Headline = require("../models/Headline");
 
 module.exports = {
     fetch: function (cb) {
@@ -10,9 +11,7 @@ module.exports = {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
             }
-            Headline.collection.insertMany(articles, {
-                ordered: false
-            }, function (err, docs) {
+            Headline.collection.insertMany(articles, {ordered: false}, function (err, docs) {
                 cb(err, docs);
             });
         });

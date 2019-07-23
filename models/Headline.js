@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+
 var Schema = mongoose.Schema;
 
 var headlineSchema = new Schema({
@@ -17,5 +18,7 @@ var headlineSchema = new Schema({
         default: false
     }
 });
+
 var Headline = mongoose.model("Headline", headlineSchema);
+
 module.exports = Headline;
